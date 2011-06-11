@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Resource Definitions //EN" "http://www.sun.com/software/appserver/dtds/sun-resources_1_3.dtd">
+<resources>
+
+	<!-- DEFINE QUEUES AND TOPICS HERE -->
+
+
+	<!-- QUEUE TO SERVER (FOR communication with server) -->
+	<admin-object-resource enabled="true"
+		jndi-name="sbc.server.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.server.queue" />
+	</admin-object-resource>
+
+	<!-- COLOR -->
+	<admin-object-resource enabled="true" jndi-name="sbc.color.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.color.queue" />
+	</admin-object-resource>
+
+	<!-- BUILD -->
+	<admin-object-resource enabled="true" jndi-name="sbc.build.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.build.queue" />
+	</admin-object-resource>
+
+	<!-- LOGISTIC -->
+	<admin-object-resource enabled="true"
+		jndi-name="sbc.logistic.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.logistic.queue" />
+	</admin-object-resource>
+
+	<!-- GUI QUEUE -->
+	<admin-object-resource enabled="true"
+		jndi-name="sbc.gui.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.gui.queue" />
+	</admin-object-resource>
+	
+	
+	<!-- EXAMPLE <admin-object-resource enabled="true" jndi-name="queue.sbc.MyQueue" 
+		res-adapter="jmsra" res-type="javax.jms.Queue"> <property name="Name" value="queue.sbc.MyQueue"/> 
+		</admin-object-resource> -->
+
+	<!-- FACTORY & POOL -->
+	<connector-resource jndi-name="SBC.Factory"
+		pool-name="SBC.FactoryPool" />
+	<connector-connection-pool name="SBC.FactoryPool"
+		connection-definition-name="javax.jms.ConnectionFactory"
+		resource-adapter-name="jmsra" />
+</resources>

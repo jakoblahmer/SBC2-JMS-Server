@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SBC1_JMS_SERVER" default="compile" basedir=".">
+
+    <property environment="env"/>
+    <property name="glassfish.home" value="${env.GLASSFISH_HOME}"/>
+    <property name="domain.dir" value="${glassfish.home}/domains/domain1"/>
+    <property name="admin.cli.jar" value="${glassfish.home}/modules/admin-cli.jar"/>
+    <property name="jmsconfig.name" value="jms_config.xml"/>
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="setup.dir" value="setup"/>
+    <property name="dist.dir" value="dist"/>
+	<property name="libGlobal.dir" value="../sbc1_global/lib"/>
+	<property name="distGlobal.dir" value="../sbc1_global/dist"/>
+    <property name="jarfile.name" value="sbc_jms_server"/>
+            
+    <path id="classpath">
+        <fileset dir="${glassfish.home}/lib">
+            <include name="javaee.jar"/>
+            <include name="appserv-rt.jar"/>
+        </fileset>
+    	<fileset dir="${libGlobal.dir}" includes="log4j*.jar" />
+    	<fileset dir="${distGlobal.dir}" includes="sbc_models.jar" />
+    	<pathelement location="${build.dir}"/>
+    </path>
+    
+	<target name="check">
+		<fail unless="env.GLASSFISH_HOME">
+			#### You must install GlassFish V3 and set the GLASSFISH_HOME variable
+		</fail>
+	</target>
+
+	<target name="setup" depends="check">
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="add-resources ${setup.dir}/${jmsconfig.name}"/>
+		</java>
+	</target>
+
+	<target name="compile" depends="check">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}"
+				destdir="${build.dir}"
+				debug="on"
+				deprecation="on"
+				classpathref="classpath" />
+		<copy file="${src.dir}/log4j.properties" tofile="${build.dir}/log4j.properties"/>
+		<mkdir dir="${build.dir}/META-INF" />
+		<copy todir="${build.dir}/META-INF">
+			<fileset dir="${src.dir}/META-INF/" />
+		</copy>
+    </target>
+    
+    <target name="dist" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar jarfile="${dist.dir}/${jarfile.name}.jar">
+            <fileset dir="${build.dir}" />
+            <zipfileset includes="**/*.class" src="${distGlobal.dir}/sbc_models.jar"/>
+        </jar>
+    </target>
+    
+    <target name="deploy" depends="clean, dist, setup, undeploy">
+	   <java jar="${admin.cli.jar}" fork="true" spawn="false">
+		  <arg line="deploy ${dist.dir}/${jarfile.name}.jar"/>
+    	   </java>
+    </target>
+    
+    <target name="undeploy" depends="check">
+        <java jar="${admin.cli.jar}" fork="true" spawn="false">
+		  <arg line="undeploy ${jarfile.name}"/>
+    	   </java>
+    </target>
+    
+    <target name="redeploy" depends="undeploy,deploy" />
+    
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <delete file="${lib.dir}/${clientJarfile.name}.jar"/>
+    	
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-connector-connection-pool --cascade=true SBC.FactoryPool"/>
+		</java> 
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.server.queue"/>
+		</java>
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.color.queue"/>
+		</java>
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.build.queue"/>
+		</java>
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.logistic.queue"/>
+		</java>
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.gui.queue"/>
+		</java>
+    	
+    </target>
+</project>
