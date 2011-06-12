@@ -5,11 +5,13 @@
 	<!-- DEFINE QUEUES AND TOPICS HERE -->
 
 
-	<!-- QUEUE TO SERVER (FOR communication with server) -->
+	<!-- QUEUE TO SERVER (FOR communication with server)
 	<admin-object-resource enabled="true"
 		jndi-name="sbc.server.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.server.queue" />
 	</admin-object-resource>
+
+	-->
 
 	<!-- COLOR -->
 	<admin-object-resource enabled="true" jndi-name="sbc.color.queue"
@@ -21,6 +23,12 @@
 	<admin-object-resource enabled="true" jndi-name="sbc.build.queue"
 		res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.build.queue" />
+	</admin-object-resource>
+
+	<!-- TEST -->
+	<admin-object-resource enabled="true"
+		jndi-name="sbc.test.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc.test.queue" />
 	</admin-object-resource>
 
 	<!-- LOGISTIC -->
@@ -35,6 +43,7 @@
 		<property name="Name" value="sbc.gui.queue" />
 	</admin-object-resource>
 	
+<!-- <message-driven-destination> <destination-type>javax.jms.Topic</destination-type> <subscription-durability>NonDurable</subscription-durability> </message-driven-destination>  -->
 	
 	<!-- EXAMPLE <admin-object-resource enabled="true" jndi-name="queue.sbc.MyQueue" 
 		res-adapter="jmsra" res-type="javax.jms.Queue"> <property name="Name" value="queue.sbc.MyQueue"/> 

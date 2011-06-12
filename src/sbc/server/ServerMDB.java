@@ -143,10 +143,14 @@ public class ServerMDB implements MessageListener {
 							if(!egg.hasId())	{
 								egg.setId(eggCounter++);
 							}
-							guiEggCount = 1;
-
+							
+							// first time here
+							if(egg.getColor().size() == 0)
+								guiEggCount = 1;
+							
 							// put in color queue
 							replyMsg = session.createObjectMessage(egg);
+							replyMsg.setStringProperty("NOCOLOR", "1");
 							colorProducer.send(replyMsg);
 						}
 

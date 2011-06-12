@@ -5,14 +5,14 @@
     <property name="glassfish.home" value="${env.GLASSFISH_HOME}"/>
     <property name="domain.dir" value="${glassfish.home}/domains/domain1"/>
     <property name="admin.cli.jar" value="${glassfish.home}/modules/admin-cli.jar"/>
-    <property name="jmsconfig.name" value="jms_config.xml"/>
+    <property name="jmsconfig.name" value="jms_config_s1.xml"/>
 
     <property name="src.dir" value="src"/>
     <property name="build.dir" value="build"/>
     <property name="setup.dir" value="setup"/>
     <property name="dist.dir" value="dist"/>
-	<property name="libGlobal.dir" value="../sbc1_global/lib"/>
-	<property name="distGlobal.dir" value="../sbc1_global/dist"/>
+	<property name="libGlobal.dir" value="../sbc2_global/lib"/>
+	<property name="distGlobal.dir" value="../sbc2_global/dist"/>
     <property name="jarfile.name" value="sbc_jms_server"/>
             
     <path id="classpath">
@@ -59,7 +59,7 @@
         </jar>
     </target>
     
-    <target name="deploy" depends="clean, dist, setup, undeploy">
+    <target name="deploy" depends="dist">
 	   <java jar="${admin.cli.jar}" fork="true" spawn="false">
 		  <arg line="deploy ${dist.dir}/${jarfile.name}.jar"/>
     	   </java>
@@ -81,9 +81,10 @@
 		<java jar="${admin.cli.jar}" fork="true" spawn="false">
 			<arg line="delete-connector-connection-pool --cascade=true SBC.FactoryPool"/>
 		</java> 
+    	<!--
 		<java jar="${admin.cli.jar}" fork="true" spawn="false">
 			<arg line="delete-jms-resource sbc.server.queue"/>
-		</java>
+		</java> -->
 		<java jar="${admin.cli.jar}" fork="true" spawn="false">
 			<arg line="delete-jms-resource sbc.color.queue"/>
 		</java>
@@ -92,6 +93,9 @@
 		</java>
 		<java jar="${admin.cli.jar}" fork="true" spawn="false">
 			<arg line="delete-jms-resource sbc.logistic.queue"/>
+		</java>
+		<java jar="${admin.cli.jar}" fork="true" spawn="false">
+			<arg line="delete-jms-resource sbc.test.queue"/>
 		</java>
 		<java jar="${admin.cli.jar}" fork="true" spawn="false">
 			<arg line="delete-jms-resource sbc.gui.queue"/>
