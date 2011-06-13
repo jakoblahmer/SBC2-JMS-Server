@@ -83,6 +83,14 @@
 		<property name="Name" value="sbc2.gui.queue" />
 	</admin-object-resource>
 	
+	
+	<!-- BENCHMARK TOPIC -->
+	<admin-object-resource enabled="true"
+		jndi-name="bench.topic" res-adapter="jmsra" res-type="javax.jms.Topic">
+		<property name="Name" value="bench.topic"/>
+	</admin-object-resource>
+	
+	
 	<!-- FACTORY & POOL -->
 	<connector-resource jndi-name="SBC.Factory"
 		pool-name="SBC.FactoryPool" />
