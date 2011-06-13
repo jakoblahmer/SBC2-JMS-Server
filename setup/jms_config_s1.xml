@@ -18,11 +18,27 @@
 		res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.color.queue" />
 	</admin-object-resource>
+	<admin-object-resource enabled="true" jndi-name="sbc3.color.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc2.color.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true" jndi-name="sbc2.color.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc3.color.queue" />
+	</admin-object-resource>
 
 	<!-- BUILD -->
 	<admin-object-resource enabled="true" jndi-name="sbc.build.queue"
 		res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.build.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true" jndi-name="sbc1.build.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc1.build.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true" jndi-name="sbc2.build.queue"
+		res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc2.build.queue" />
 	</admin-object-resource>
 
 	<!-- TEST -->
@@ -30,11 +46,27 @@
 		jndi-name="sbc.test.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.test.queue" />
 	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc1.test.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc1.test.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc2.test.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc2.test.queue" />
+	</admin-object-resource>
 
 	<!-- LOGISTIC -->
 	<admin-object-resource enabled="true"
 		jndi-name="sbc.logistic.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.logistic.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc1.logistic.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc1.logistic.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc2.logistic.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc2.logistic.queue" />
 	</admin-object-resource>
 
 	<!-- GUI QUEUE -->
@@ -42,13 +74,15 @@
 		jndi-name="sbc.gui.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
 		<property name="Name" value="sbc.gui.queue" />
 	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc1.gui.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc1.gui.queue" />
+	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="sbc2.gui.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="sbc2.gui.queue" />
+	</admin-object-resource>
 	
-<!-- <message-driven-destination> <destination-type>javax.jms.Topic</destination-type> <subscription-durability>NonDurable</subscription-durability> </message-driven-destination>  -->
-	
-	<!-- EXAMPLE <admin-object-resource enabled="true" jndi-name="queue.sbc.MyQueue" 
-		res-adapter="jmsra" res-type="javax.jms.Queue"> <property name="Name" value="queue.sbc.MyQueue"/> 
-		</admin-object-resource> -->
-
 	<!-- FACTORY & POOL -->
 	<connector-resource jndi-name="SBC.Factory"
 		pool-name="SBC.FactoryPool" />

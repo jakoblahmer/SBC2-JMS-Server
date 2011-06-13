@@ -11,8 +11,8 @@
     <property name="build.dir" value="build"/>
     <property name="setup.dir" value="setup"/>
     <property name="dist.dir" value="dist"/>
-	<property name="libGlobal.dir" value="../sbc2_global/lib"/>
-	<property name="distGlobal.dir" value="../sbc2_global/dist"/>
+	<property name="libGlobal.dir" value="../SBC2-GLOBAL/lib"/>
+	<property name="distGlobal.dir" value="../SBC2-GLOBAL/dist"/>
     <property name="jarfile.name" value="sbc_jms_server"/>
             
     <path id="classpath">
