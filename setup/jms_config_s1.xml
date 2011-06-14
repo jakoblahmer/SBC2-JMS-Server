@@ -84,10 +84,14 @@
 	</admin-object-resource>
 	
 	
-	<!-- BENCHMARK TOPIC -->
+	<!-- BENCHMARK TOPIC / QUEUE -->
 	<admin-object-resource enabled="true"
 		jndi-name="bench.topic" res-adapter="jmsra" res-type="javax.jms.Topic">
 		<property name="Name" value="bench.topic"/>
+	</admin-object-resource>
+	<admin-object-resource enabled="true"
+		jndi-name="bench.result.queue" res-adapter="jmsra" res-type="javax.jms.Queue">
+		<property name="Name" value="bench.result.queue" />
 	</admin-object-resource>
 	
 	
